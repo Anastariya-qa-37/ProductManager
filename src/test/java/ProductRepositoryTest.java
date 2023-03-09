@@ -37,14 +37,10 @@ public class ProductRepositoryTest {
 
     @Test
     void findAllNone() {
-        repo.removeById(1);
+
         Product[] expected = {};
-
-
         // вызываем целевой метод:
         Product[] actual = repo.findAll();
-
-
         // производим проверку (сравниваем ожидаемый и фактический):
         //assertEquals(expected, actual);
         assertArrayEquals(expected, actual);
@@ -55,12 +51,8 @@ public class ProductRepositoryTest {
         repo.save(book);
         repo.save(smartphone);
         Product[] expected = {book,smartphone};
-
-
         // вызываем целевой метод:
         Product[] actual = repo.findAll();
-
-
         // производим проверку (сравниваем ожидаемый и фактический):
         //assertEquals(expected, actual);
         assertArrayEquals(expected, actual);
@@ -82,18 +74,6 @@ public class ProductRepositoryTest {
         repo.save(book);
         assertThrows(NotFoundException.class, () -> repo.removeById(23));
 
-    }
-
-    @Test
-    void removeByIdNone() {
-        repo.save(book);
-        Product[] expected = {book};
-
-        // вызываем целевой метод:
-        repo.removeById(32);
-        Product[] actual = repo.findAll();
-
-        assertArrayEquals(expected, actual);
     }
 
 
