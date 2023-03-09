@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ProductRepositoryTest {
@@ -27,6 +28,12 @@ public class ProductRepositoryTest {
         //assertEquals(expected, actual);
         assertArrayEquals(expected, actual);
     }
+    @Test
+    void saveAlreadyExistsException() {
+        repo.save(book);
+        assertThrows(AlreadyExistsException.class, () -> repo.save(book));
+    }
+
 
     @Test
     void findAllNone() {
@@ -69,6 +76,12 @@ public class ProductRepositoryTest {
         Product[] actual = repo.findAll();
 
         assertArrayEquals(expected, actual);
+    }
+    @Test
+    void removeByIdExeption() {
+        repo.save(book);
+        assertThrows(NotFoundException.class, () -> repo.removeById(23));
+
     }
 
     @Test
